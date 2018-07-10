@@ -47,6 +47,10 @@ void setup()
 
 void showBan(int[][] b)
 {
+  Move m = getMove(ban, teban);
+  if (turn(ban,teban, m.x,m.y) == 0)
+  {teban=-teban;
+  passcount++;};
   // もし、現在の手番の人が石を置けないならば
   // 連続パス回数を１回増やして、手番をさらに先に送る
 
@@ -283,6 +287,9 @@ void autoPutStone()
   // パスでなければ置く。手番を変える。連続パス回数を０にする
   if( m.x != 0 )
   {
+    put(ban,teban, m.x,m.y);
+    teban = -teban;
+    passcount = 0;
 
   }
   // パスなら、手番を変える。連続パス回数を１増やす。
